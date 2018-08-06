@@ -49,5 +49,71 @@ namespace ToolHelper
                 throw ex;
             }
         }
+        /// <summary>
+        /// check image is jpg
+        /// </summary>
+        /// <param name="imageBase64">image base64 string</param>
+        /// <returns>true is jpg  false not jpg</returns>
+        public static bool IsJPG(string imageBase64)
+        {
+            try
+            {
+                var img = Convert.FromBase64String(imageBase64);
+                var jpgStr = $"{img[0].ToString()}{img[1].ToString()}";
+                return jpgStr.Equals($"{(int)ImageFormat.JPG}");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// check image is png
+        /// </summary>
+        /// <param name="imageBase64">image base64 string</param>
+        /// <returns>true is png  false not png</returns>
+        public static bool IsPNG(string imageBase64)
+        {
+            try
+            {
+                var img = Convert.FromBase64String(imageBase64);
+                var jpgStr = $"{img[0].ToString()}{img[1].ToString()}";
+                return jpgStr.Equals($"{(int)ImageFormat.PNG}");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// check image is gif
+        /// </summary>
+        /// <param name="imageBase64">image base64 string</param>
+        /// <returns>true is gif  false not gif</returns>
+        public static bool IsGIF(string imageBase64)
+        {
+            try
+            {
+                var img = Convert.FromBase64String(imageBase64);
+                var jpgStr = $"{img[0].ToString()}{img[1].ToString()}";
+                return jpgStr.Equals($"{(int)ImageFormat.GIF}");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public enum ImageFormat
+        {
+            JPG = 255216,
+            GIF = 7173,
+            PNG = 13780,
+        }
     }
 }
