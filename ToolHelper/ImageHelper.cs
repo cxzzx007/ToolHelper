@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ToolHelper
 {
@@ -48,6 +49,34 @@ namespace ToolHelper
 
                 throw ex;
             }
+        }
+        /// <summary>
+        /// base64 to image
+        /// </summary>
+        /// <param name="base64">base64 string</param>
+        /// <param name="path">store path</param>
+        public static void Base64ToImage(string base64, string path)
+        {
+            try
+            {
+                string filepath = Path.GetDirectoryName(path);
+                if (!Directory.Exists(filepath))
+                {
+                    if (filepath != null) Directory.CreateDirectory(filepath);
+                }
+                var match = Regex.Match(base64, "data:image/png;base64,([\\w\\W]*)$");
+                if (match.Success)
+                {
+                    base64 = match.Groups[1].Value;
+                }
+                var photoBytes = Convert.FromBase64String(base64);
+                File.WriteAllBytes(path, photoBytes);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
         /// <summary>
         /// check image is jpg

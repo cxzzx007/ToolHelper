@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ToolHelper" Version="1.0.0" />
+    <PackageReference Include="ToolHelper" Version="1.2.2" />
   </ItemGroup>
 
 </Project>
