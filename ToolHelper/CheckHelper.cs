@@ -35,6 +35,15 @@ namespace ToolHelper
             return Regex.IsMatch(name, @"^[\u2E80-\uFE4F\w\u00B7]{1,12}$");
         }
         /// <summary>
+        /// 字符串仅能是中文
+        /// </summary>
+        /// <param name="chinese"></param>
+        /// <returns></returns>
+        public static bool IsChinese(string chinese)
+        {
+            return Regex.IsMatch(chinese, @"^[\\u4e00-\\u9fa5]{0,}$");
+        }
+        /// <summary>
         /// check is email
         /// </summary>
         /// <param name="email">email</param>
@@ -60,6 +69,26 @@ namespace ToolHelper
         public static bool IsCarNumber(string carnumber)
         {
             string express = @"^[\u4e00-\u9fa5-\w]{1,10}$"; return Regex.IsMatch(carnumber, express);
+        }
+
+        /// <summary>
+        /// 密码的强度必须是包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public static bool IsStrongPassword(string password)
+        {
+            string express = @"^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,10}$";
+            return Regex.IsMatch(password, express);
+        }
+        /// <summary>
+        /// 由数字、字母、或下划线组成的字符串
+        /// </summary>
+        /// <param name="variable"></param>
+        /// <returns></returns>
+        public static bool IsVariable(string variable)
+        {
+            return Regex.IsMatch(variable, @"^\\w+$");
         }
     }
 }
